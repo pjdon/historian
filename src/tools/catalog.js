@@ -22,7 +22,12 @@ function HistoryCatalog(containerElement, listElement) {
   const bufferDist = 200;
 
   const template = document.createElement('template');
-  template.innerHTML = `<div class='item'><a></a></div>`;
+  template.innerHTML =
+    `<div class="item">` +
+    `<div class="icon"></div>` +
+    `<a class="content"></a>` +
+    `<div class="label"><div class="timestamp"></div></div>` +
+    `</div>`;
 
   function stdTimeFromDate(date, { pmString = 'PM', amString = 'AM' } = {}) {
     /* Get standard time format string from Date object `date`. Not zero-padded.
@@ -39,10 +44,12 @@ function HistoryCatalog(containerElement, listElement) {
   function addRow(data) {
     console.log('addRow', data);
     const node = template.content.cloneNode(true);
-    const div = node.firstChild;
-    const link = div.firstChild;
-    div.setAttribute('data-timestamp', stdTimeFromDate(data.datetime));
-    div.setAttribute('title', (data.title ? data.title + "\n" : "") + data.url);
+    const item = node.firstChild;
+    const [icon, link, label] = item.childNodes;
+    const timestamp = label.firstChild;
+    timestamp.textContent = stdTimeFromDate(data.datetime);
+    // item.setAttribute('data-timestamp', );
+    item.setAttribute('title', (data.title ? data.title + "\n" : "") + data.url);
     link.textContent = data.title || data.url;
     link.href = data.url;
     list.append(node);
