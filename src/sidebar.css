@@ -1,0 +1,51 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#app {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 38px auto;
+}
+
+#toolbar {
+  grid-row: 1;
+  border-bottom: 1px solid rgb(227,227,227);
+}
+
+#content {
+  grid-row: 2;
+  overflow-y: auto;
+  scroll-snap-points-y: repeat(30px);
+  scroll-snap-type: mandatory;
+}
+
+div.item {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+}
+
+div.item:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+div.item>a {
+  flex-grow: 1;
+  padding-left: 8px;
+  line-height: 30px;
+  display: inline;
+  color: black;
+  overflow: hidden;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+div.item:hover::after {
+  white-space: nowrap;
+  line-height: 30px;
+  content: attr(data-timestamp);
+}

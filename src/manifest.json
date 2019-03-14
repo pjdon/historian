@@ -1,0 +1,42 @@
+{
+  "manifest_version": 2,
+  "name": "Historian",
+  "version": "0.1",
+
+  "description": "View and Search Browser History",
+
+  "icons": {
+    "48": "icons/menu-48.png",
+    "96": "icons/menu-96.png"
+  },
+
+  "permissions" : [
+    "history"
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/menu-48.png",
+    "default_title": "Open Historian"
+  },
+
+  "sidebar_action": {
+    "default_icon": {
+      "32": "icons/sidebar-32.png"
+    },
+    "default_title": "Historian",
+    "default_panel": "sidebar.html",
+    "open_at_install": false
+  },
+
+  "commands": {
+    "_execute_sidebar_action": {
+      "suggested_key": {
+        "default": "Ctrl+Q"
+      }
+    }
+  },
+
+  "background": {
+    "scripts": ["background.js"]
+  }
+}
